@@ -1,0 +1,3 @@
+export const STORE_ALL_SLUGS = 'STORE_ALL_SLUGS';
+export const SET_ACTIVE_SLUG = 'SET_ACTIVE_SLUG';
+export const STORE_PLACE_DATA = 'STORE_PLACE_DATA';
