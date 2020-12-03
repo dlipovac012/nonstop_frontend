@@ -5,8 +5,8 @@ import { constructQuery } from './helpers';
 */
 function NetworkManager() {
 	this.instance = null;
-	this.apiUrl = 'http://localhost:8000/api';
-	// this.apiUrl = process.env.API_URL;
+	// this.apiUrl = 'http://localhost:8000/api';
+	this.apiUrl = process.env.API_URL;
 
 	/**
 	 * Generic GET HTTP method
