@@ -23,10 +23,10 @@ function Details() {
 				console.error(error);
 			}
 		})();
-	}, [activeSlug]);
+	}, [activeSlug, place]);
 
 	return (
-		<DetailsStyled>
+		<DetailsStyled hasLocation={place?.locations.length > 0}>
 			<Flex>
 				<HeadingStyled>
 					<TitleStyled>{place?.name}</TitleStyled>
@@ -175,12 +175,14 @@ function Details() {
 var DetailsStyled = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	flex-basis: 100%;
 	position: relative;
 	background-color: ${({ theme }) => theme.colors.background};
 	border-left: 1px solid ${({ theme }) => theme.colors.borderPrimary};
 	border-right: 1px solid ${({ theme }) => theme.colors.borderPrimary};
+	${({ hasLocation }) => hasLocation && `
+		justify-content: space-between;
+	`}
 `;
 
 var HeadingStyled = styled.div`

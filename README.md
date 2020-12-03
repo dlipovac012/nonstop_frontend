@@ -18,7 +18,7 @@ Find best places around
 - In case that installer is complaining about being unable to resolve dependency tree, try appending npm install with `--force` flag
 
 ### Running:
-- To run the app locally, one should simply do `npm start` after successfully completed steps mentioned above.
+- To run the app locally, one should simply do `npm start` after successfully completed steps mentioned above. App is running on `http://localhost:3000`.
 
 ### Production build:
 - To create a production-ready build, execute `npm run build`, it will create `dist/` directory in the root of your project with minimized files.
