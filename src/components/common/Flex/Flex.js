@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function Flex({ children, }) {
+function Flex({ children, justifyBetween }) {
 	return (
-		<FlexStyled>
+		<FlexStyled justifyBetween={justifyBetween}>
 			{children}
 		</FlexStyled>
 	);
@@ -13,7 +13,10 @@ function Flex({ children, }) {
 var FlexStyled = styled.div`
     display: flex;
     flex: 0 0 100%
-    width: 100%;
+	width: 100%;
+	${({ justifyBetween }) => justifyBetween && `
+		justify-content: space-between;
+	`}
 `;
 
 Flex.propTypes = {
@@ -22,6 +25,11 @@ Flex.propTypes = {
 		PropTypes.string,
 		PropTypes.node,
 	]).isRequired,
+	justifyBetween: PropTypes.bool,
+};
+
+Flex.defaultProps = {
+	justifyBetween: false,
 };
 
 export default Flex;

@@ -23,6 +23,8 @@ function Details() {
 		})();
 	}, [activeSlug]);
 
+	console.log(place);
+
 	return (
 		<DetailsStyled>
 			<Flex>
@@ -79,6 +81,23 @@ function Details() {
 							);
 						})}
 					</WorkingHoursUlStyled>
+					<SubtitleStyled>
+				Contact:
+					</SubtitleStyled>
+					<ContactsWrapper>
+						<Flex justifyBetween>
+							<Column noPadding>
+								<SectionTitleStyled>{'Phone number:'}</SectionTitleStyled>
+							</Column>
+							<Column noPadding>
+								{place?.contacts.map(contact => {
+									return <span key={contact.id}>
+										{contact.phone_number}
+									</span>;
+								})}
+							</Column>
+						</Flex>
+					</ContactsWrapper>
 				</Column>
 			</Flex>
 		</DetailsStyled>
@@ -208,8 +227,17 @@ var WorkingHoursUlStyled = styled.ul`
 var WorkingHoursLiStyled = styled.li`
 	display: flex;
 	justify-content: space-between;
-	// flex-basis: 50%;
 	padding: 8px 0;
+`;
+
+var ContactsWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+var SectionTitleStyled = styled.span`
+	display: inline-flex;
+	padding-left: 16px;
 `;
 
 export default Details;

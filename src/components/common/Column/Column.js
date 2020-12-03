@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function Column({ children }) {
+function Column({ children, noPadding }) {
 	return (
-		<ColumnWrapper>
+		<ColumnWrapper noPadding={noPadding}>
 			{children}
 		</ColumnWrapper>
 	);
@@ -13,8 +13,7 @@ function Column({ children }) {
 var ColumnWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 8px;
+    flex: 1;${({ noPadding }) => noPadding ? 'padding: 0;' : 'padding: 8px;'}
     margin: 0;
 `;
 
@@ -24,6 +23,11 @@ Column.propTypes = {
 		PropTypes.string,
 		PropTypes.node,
 	]).isRequired,
+	noPadding: PropTypes.bool,
+};
+
+Column.defaultProps = {
+	noPadding: false,
 };
 
 export default Column;
