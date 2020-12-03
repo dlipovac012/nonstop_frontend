@@ -36,9 +36,6 @@ function Home() {
 
 var HomeStyled = styled.div`
     display: flex;
-	// grid-template-columns: repeat(3, 1fr);
-	// grid-auto-flow: row;
-	// column-gap: 1px;
 	margin: 0 auto;
 	height: 100vh;
 `;

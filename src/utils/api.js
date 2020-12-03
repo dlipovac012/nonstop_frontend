@@ -5,7 +5,6 @@ import { constructQuery } from './helpers';
 */
 function NetworkManager() {
 	this.instance = null;
-	// this.apiUrl = 'http://localhost:8000/api';
 	this.apiUrl = process.env.API_URL;
 
 	/**
