@@ -6,6 +6,7 @@ import NetworkManager from '../../utils/api';
 import Column from '../common/Column';
 import Flex from '../common/Flex/Flex';
 import { capitalizeWord, deepEqual } from '../../utils/helpers';
+import MapComponent from './MapComponent';
 
 function Details() {
 	const [{ activeSlug, place }, dispatch] = useContextReducer();
@@ -16,14 +17,13 @@ function Details() {
 				if (activeSlug) {
 					var data = (await NetworkManager.get(`/places/${activeSlug}`)).data;
 				}
+				
 				dispatch({ type: STORE_PLACE_DATA, payload: data });
 			} catch (error) {
 				console.error(error);
 			}
 		})();
 	}, [activeSlug]);
-
-	console.log(place);
 
 	return (
 		<DetailsStyled>
@@ -100,6 +100,12 @@ function Details() {
 					</ContactsWrapper>
 				</Column>
 			</Flex>
+			{place?.locations.length ? (
+				<Flex justifyCenter>
+					<MapComponent width="640px" height="480px" location={place?.locations[0]} zoom={10} />
+				</Flex>
+
+			): null}
 		</DetailsStyled>
 	);
 
@@ -169,7 +175,9 @@ function Details() {
 var DetailsStyled = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	flex-basis: 100%;
+	position: relative;
 	background-color: ${({ theme }) => theme.colors.background};
 	border-left: 1px solid ${({ theme }) => theme.colors.borderPrimary};
 	border-right: 1px solid ${({ theme }) => theme.colors.borderPrimary};
