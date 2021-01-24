@@ -9,7 +9,7 @@ module.exports = (env, args) => {
 
 	return merge(common, {
 		mode: 'development',
-		// devtool: 'eval-cheap-source-map',
+		devtool: 'cheap-module-source-map',
 		output: {
 			publicPath: '/',
 			filename: 'bundle.js',

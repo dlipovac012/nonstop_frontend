@@ -1,39 +1,26 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { AppProvider } from './context';
-import AppReducer, { initialState } from './reducers/reducer';
-import Home from './scenes/home';
-
-import theme from './theme';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
+import Home from './Home';
+import Room from './Room';
 
 function App() {
 	return (
-		<StrictMode>
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				<AppProvider initialState={initialState} reducer={AppReducer}>
-					<Home />
-				</AppProvider>
-			</ThemeProvider>
-		</StrictMode>
+		<Router>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route path="/:roomId">
+                    <Room />
+                </Route>
+            </Switch>
+        </Router>
 	);
-}
-
-var GlobalStyle = createGlobalStyle`
-    html, body {
-        margin: 0 auto;
-        padding: 0;
-    }
-    *, *::after, *::before {
-        font-family: Arial, Helvetica, sans-serif;
-        box-sizing: border-box;
-    }
-    body {
-        width: ${({ theme }) => theme.screenWidths.xl.width}px;
-        background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-        color: ${({ theme }) => theme.colors.text};
-    }
-`;
+};
 
 render(<App />, document.getElementById('app'));
